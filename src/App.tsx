@@ -1,5 +1,5 @@
 import './App.css';
-import { ChangeEvent, Component, useMemo, useState } from 'react';
+import { ChangeEvent, Component, useState } from 'react';
 import Posts from './components/Posts';
 import { BaseButton } from './components/Button';
 import { LabelledInput } from './components/Input';

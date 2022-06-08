@@ -6,7 +6,7 @@ import { ReactComponent as Check } from '../../assets/icons/check.svg';
 import styled from 'styled-components';
 import StyledButton from '../StyledComponents/button';
 import React from 'react';
-import Axios, { AxiosError } from 'axios';
+import Axios from 'axios';
 
 
 type PostType = {
