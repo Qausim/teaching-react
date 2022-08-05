@@ -1,6 +1,7 @@
 import { MessageType } from "../../data/static-data";
-import store from "../../store";
-import { deleteMessage } from "../../store/actions/messages.actions";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { deleteMessage } from "../../store/reducers/messages.reducer";
+// import { deleteMessage } from "../../store/actions/messages.actions";
 
 type ChatProps = {
   message: MessageType;
@@ -8,11 +9,11 @@ type ChatProps = {
 
 const Chat = ({ message }: ChatProps) => {
   const { text, is_user_msg } = message;
+  const dispatch = useAppDispatch();
+  const activeUserId = useAppSelector((state) => state.chatState.activeUserId);
 
   const handleDelete = () => {
-    store.dispatch(deleteMessage(
-      message.message_id, store.getState().chatState.activeUserId!
-    ));
+    dispatch(deleteMessage({ id: message.message_id, userId: activeUserId!}));
   }
 
   return (

@@ -1,16 +1,11 @@
 import './App.css';
-import Sidebar from './components/Sidebar';
-import Main from './components/Main';
-import ContactList from './containers/ContactList';
+import AppRoutes from './app.routes';
 
 
 function App() {
   return (
     <div className="App">
-      <Sidebar>
-        <ContactList />
-      </Sidebar>
-      <Main />
+      <AppRoutes />
     </div>
   );
 }

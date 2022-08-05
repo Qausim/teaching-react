@@ -1,0 +1,12 @@
+.post {
+  text-decoration: none;
+  color: black;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.post + .post {
+  margin-top: 16px;
+}

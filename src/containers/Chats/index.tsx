@@ -1,12 +1,15 @@
 import { useEffect, useRef } from "react";
 import Chat from "../../components/Chat";
-import store from "../../store";
+import { useAppSelector } from "../../store";
 import './Chats.css';
 
 
 const Chats = () => {
-  const { chatState: { activeUserId }, messages } = store.getState();
-  const chatMessages = Array.from(messages[activeUserId!].values());
+  const { activeUserId, messages } = useAppSelector((state) => ({
+    messages: state.messages,
+    activeUserId: state.chatState.activeUserId,
+  }));
+  const chatMessages = messages[activeUserId].order.map((id) => messages[activeUserId].messages[id]);
   const chatsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

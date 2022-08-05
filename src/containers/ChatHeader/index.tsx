@@ -1,12 +1,12 @@
-import store from "../../store";
+import store, { useAppSelector } from "../../store";
 import './ChatHeader.css';
 
 
 const ChatHeader = () => {
-  const {
-    contacts,
-    chatState: { activeUserId },
-  } = store.getState();
+  const { contacts, activeUserId } = useAppSelector((state) => ({
+    contacts: state.contacts,
+    activeUserId: state.chatState.activeUserId
+  }));
   const { name, status } = contacts[activeUserId!];
 
   return (

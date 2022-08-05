@@ -1,8 +1,10 @@
 import { MouseEvent } from "react";
 import { UserType } from "../../data/static-data";
-import store from "../../store";
-import { deleteContact } from "../../store/actions/contact.actions";
+import store, { useAppDispatch } from "../../store";
+// import { deleteContact } from "../../store/actions/contact.actions";
 import { SET_ACTIVE_USER_ID } from "../../store/constants";
+import { setActiveUserId } from "../../store/reducers/chat-state.reducer";
+import { deleteContact } from "../../store/reducers/contacts.reducer";
 import "./User.css";
 
 
@@ -13,19 +15,17 @@ type UserProps = {
 
 const User = ({ user }: UserProps) => {
   const { name, profile_pic, status, user_id } = user;
+  const dispatch = useAppDispatch();
 
   const deleteUser = (e: MouseEvent) => {
     e.stopPropagation();
-    store.dispatch(deleteContact(user_id));
+    dispatch(deleteContact(user_id));
   }
 
   return (
     <div
       className="User"
-      onClick={() => store.dispatch({
-        type: SET_ACTIVE_USER_ID,
-        payload: user_id,
-      })}
+      onClick={() => dispatch(setActiveUserId(user_id))}
     >
       <img src={profile_pic} alt={name} className="User__pic" />
       <div className="User__details">

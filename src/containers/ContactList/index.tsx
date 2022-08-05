@@ -1,10 +1,11 @@
-import store from "../../store";
+import { useAppSelector } from "../../store";
 import _ from 'lodash';
 import User from "../User";
 
 
 const ContactList = () => {
-  const { contacts } = store.getState();
+  const contacts = useAppSelector(state => state.contacts);
+
   return (
     <>
       {

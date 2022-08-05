@@ -1,14 +1,24 @@
-import { Reducer } from 'redux';
-import { state, UserType } from "../../data/static-data";
+import { createSlice } from '@reduxjs/toolkit';
+import { state } from "../../data/static-data";
 
 const initialState = state.user;
 
 
-type UserActions = {
+export type UserActions = {
   type: null;
 };
 
-export const userReducer: Reducer<UserType, UserActions> = (state = initialState, action) => {
-  console.log('USER REDUCER', {action});
-  return state;
-};
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+
+  }
+});
+
+export const userReducer = userSlice.reducer;
+
+// export const userReducer: Reducer<UserType, UserActions> = (state = initialState, action) => {
+//   console.log('USER REDUCER', {action});
+//   return state;
+// };

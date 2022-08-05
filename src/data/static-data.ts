@@ -15,16 +15,22 @@ const avatarGenerator = new AvatarGenerator();
 const users = generateUsers(10);
 export const contacts = _.mapKeys(users, "user_id");
 export const getMessages = (messagesPerUser: number) => {
-  let messages: {
-    [key: string]: Map<string, MessageType>;
-  } = {};
+  let messages: Record<string, {
+    order: string[];
+    messages: Record<string, MessageType>;
+  }> = {};
   _.forEach(users, user => {
     const generatedMessages = generateMsgs(messagesPerUser);
-    const messagesMap = new Map();
+    const messagesMap: Record<string, MessageType> = {};
+    const order: string[] = [];
     generatedMessages.forEach((message) => {
-      messagesMap.set(message.message_id, message);
+      messagesMap[message.message_id] = message;
+      order.push(message.message_id);
     });
-    messages[user.user_id] = messagesMap;
+    messages[user.user_id] = {
+      messages: messagesMap,
+      order,
+    };
   });
   return messages;
 };

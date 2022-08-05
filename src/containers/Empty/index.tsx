@@ -1,15 +1,13 @@
-import store from "../../store";
+import store, { useAppSelector } from "../../store";
 import './Empty.css';
 
 
 const Empty = () => {
   const {
-    user: {
-      name,
-      status,
-      profile_pic
-    },
-  } = store.getState();
+    name,
+    status,
+    profile_pic
+  } = useAppSelector((state) => state.user);
 
   const first_name = name.split(" ")[0];
   return (
