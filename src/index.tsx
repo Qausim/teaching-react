@@ -1,16 +1,41 @@
 import React from 'react';
-import ReactDOMClient from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import store from './store';
+import { Provider } from 'react-redux';
 
-const root = ReactDOMClient.createRoot(document.getElementById('root')!);
-root.render(
-  // <React.StrictMode>
-    <App />,
-  // {/* </React.StrictMode>, */}
+
+if (process.env.NODE_ENV !== 'production') {
+  // @ts-ignore
+  Map.prototype.toJSON = function() {
+    const obj: { [key: string]: any } = {};
+    this.forEach((value, key) => obj[key] = value);
+    return obj;
+  }
+}
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
 );
 
+const fancyLog = () => {
+  console.log("%c Rendered with 👉 👉 👇", "background: purple; color: #FFF");
+  console.log(store.getState());
+};
+
+const render = () => {
+  fancyLog();
+  root.render(
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+  );
+};
+render();
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

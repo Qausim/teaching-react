@@ -1,0 +1,48 @@
+.User {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  position: relative;
+}
+
+.User:hover {
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.User__pic {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.User__details {
+  display: none;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px;
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+}
+/* not small devices  */
+
+@media (min-width: 576px) {
+  .User__details {
+    display: block;
+    padding: 0 0 0 1rem;
+  }
+  .User__details-name {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+  }
+}
